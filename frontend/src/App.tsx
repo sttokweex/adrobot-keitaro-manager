@@ -6,13 +6,13 @@ import { CampaignListPage } from "./pages/CampaignListPage";
 import { CampaignCreator } from "./pages/CampaignCreator";
 import { EditorPage } from "./pages/EditorPage";
 import { api } from "./lib/api";
+import { loadViewState, saveViewState, type AppPage } from "./lib/viewState";
 import type { Campaign, Notice } from "./types";
 
-type Page = "campaigns" | "editor" | "create";
-
 export default function App() {
-  const [page, setPage] = useState<Page>("campaigns");
-  const [campaign, setCampaign] = useState<Campaign | null>(null);
+  const [initialView] = useState(loadViewState);
+  const [page, setPage] = useState<AppPage>(initialView.page);
+  const [campaign, setCampaign] = useState<Campaign | null>(initialView.campaign);
   const [notice, setNotice] = useState<Notice>(null);
   const [connected, setConnected] = useState<boolean | null>(null);
 
@@ -21,6 +21,10 @@ export default function App() {
       .then((health) => setConnected(health.keitaro_configured))
       .catch(() => setConnected(false));
   }, []);
+
+  useEffect(() => {
+    saveViewState({ page, campaign });
+  }, [page, campaign]);
 
   useEffect(() => {
     if (!notice) return;
