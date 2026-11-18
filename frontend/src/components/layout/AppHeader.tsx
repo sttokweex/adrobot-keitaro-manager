@@ -1,15 +1,14 @@
 import { Icon } from "../Icon";
-
-type Page = "campaigns" | "editor" | "create";
+import type { AppPage } from "../../lib/viewState";
 
 export function AppHeader({
   page,
   connected,
   onNavigate,
 }: {
-  page: Page;
+  page: AppPage;
   connected: boolean | null;
-  onNavigate: (page: Page) => void;
+  onNavigate: (page: AppPage) => void;
 }) {
   return (
     <header className="header">
