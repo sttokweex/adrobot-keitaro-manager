@@ -16,7 +16,7 @@ export function CreatedCampaignNotice({
         </small>
       </span>
       <button className="button plain" onClick={onOpen}>
-        Открыть потоки
+        Перейти в кампанию
       </button>
     </div>
   );
