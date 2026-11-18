@@ -1,0 +1,8 @@
+.env
+__pycache__/
+*.py[cod]
+data/
+.DS_Store
+frontend/node_modules/
+frontend/dist/
+frontend/*.tsbuildinfo
